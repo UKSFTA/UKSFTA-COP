@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div id="map-container">
+    <div id="map"></div>
+    
+    <!-- Intel Command Sidebar -->
+    <div id="controls">
+        <h3>INTEL CONTROL PANEL</h3>
+        
+        <div class="control-group">
+            <label>AOR / THEATRE:</label>
+            <select id="theatre-select" onchange="changeTheatre(this.value)">
+                {{ range .Site.Data.theatres.categories }}
+                <optgroup label="{{ .label }}">
+                    {{ range .maps }}
+                    <option value="{{ .id }}">{{ .name }}</option>
+                    {{ end }}
+                </optgroup>
+                {{ end }}
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>OBJECTIVE / TARGET NAME:</label>
+            <input type="text" id="marker-text" placeholder="e.g. AO RED">
+        </div>
+
+        <div class="control-group">
+            <label>HOSTILITY (SOP-01):</label>
+            <div class="button-grid">
+                <button onclick="setColor('#0000ff')" style="background:#003366; border-left: 4px solid #0000ff">FRIENDLY</button>
+                <button onclick="setColor('#ff0000')" style="background:#660000; border-left: 4px solid #ff0000">HOSTILE</button>
+                <button onclick="setColor('#00ff00')" style="background:#004400; border-left: 4px solid #00ff00">NEUTRAL</button>
+                <button onclick="setColor('#ffff00')" style="background:#555500; border-left: 4px solid #ffff00">UNKNOWN</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>UNIT / TRACE TYPE:</label>
+            <select id="symbol-select" onchange="setSymbol(this.value)">
+                <optgroup label="Ground Forces">
+                    <option value="b_inf">Sect / Plt (Light)</option>
+                    <option value="b_motor_inf">Sect / Plt (Motorised)</option>
+                    <option value="b_mech_inf">Sect / Plt (Mechanised)</option>
+                </optgroup>
+                <optgroup label="Armour & Cav">
+                    <option value="b_armor">Armour / CR2</option>
+                    <option value="b_recon">Recon / Cav</option>
+                    <option value="b_art">Artillery / GMLRS</option>
+                </optgroup>
+                <optgroup label="Command & Support">
+                    <option value="b_hq">HQ Node</option>
+                    <option value="b_med">Medical / RAP</option>
+                    <option value="b_maint">REM / EME</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <hr>
+        <button id="save-drawings" class="btn-primary">PUBLISH INTEL TO COP</button>
+        <div id="status">COMMS STATUS: UPLINK READY</div>
+    </div>
+</div>
+{{ end }}

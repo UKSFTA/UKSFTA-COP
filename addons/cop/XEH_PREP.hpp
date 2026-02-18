@@ -1,0 +1,11 @@
+PREP(createMarkersFromDrawings);
+PREP(createMarkersFromJSON);
+PREP(deleteImportedMarkers);
+PREP(hexToMarkerColor);
+PREP(importDrawingsInit);
+PREP(importLayer);
+PREP(mapSymbolToMarkerType);
+PREP(openLayerSelectGUI);
+PREP(requestDrawings);
+PREP(requestLayers);
+PREP(requestMaps);

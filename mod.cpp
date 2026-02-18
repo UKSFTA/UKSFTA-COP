@@ -1,0 +1,9 @@
+name = "UKSF Task Force Alpha - UKSFTA-COP";
+author = "UKSF Taskforce Alpha Team";
+logo = "\z\uksfta\addons\cop\data\logo_uksfta_cop_ca.paa";
+logoOver = "\z\uksfta\addons\cop\data\logo_uksfta_cop_ca.paa";
+logoSmall = "\z\uksfta\addons\cop\data\logo_uksfta_cop_ca.paa";
+overview = "UKSF Taskforce Alpha - UKSFTA-COP";
+picture = "\z\uksfta\addons\cop\data\logo_uksfta_cop_ca.paa";
+tooltip = "UKSFTA";
+tooltipOwned = "UKSF Taskforce Alpha";

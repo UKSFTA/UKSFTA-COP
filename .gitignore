@@ -1,0 +1,49 @@
+# UKSFTA Diamond Grade GitIgnore - COP Mod & Portal
+
+# HEMTT Artifacts
+.hemttout/
+.hemtt/
+.hemttprivatekey
+!.hemtt/project.toml
+!.hemtt/launch.toml
+!.hemtt/lint.toml
+!.hemtt/scripts/
+!.hemtt/hooks/
+
+# Build Artifacts
+*.pbo
+*.bisign
+*.bikey
+*.biprivatekey
+*.zip
+*.log
+*.rpt
+*.bidry
+*.so
+*.dll
+
+# Web Infrastructure
+web/public/
+web/resources/_gen/
+.hugo_build.lock
+node_modules/
+
+# Intelligence Archive (Large Map Tiles)
+theatre_archive/
+web/static/theatre/
+
+# Local Environment
+.env
+.vscode/
+.idea/
+*.swp
+*.bak
+__pycache__/
+.pytest_cache/
+.uksf_tools/
+/tools/
+!tools/README.md
+
+# System
+.DS_Store
+Thumbs.db

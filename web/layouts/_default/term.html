@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="container tactical-box">
+    <h2>Intelligence Trace: {{ .Title }}</h2>
+    <div class="intel-list">
+        {{ range .Pages }}
+        <article>
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <time>{{ .Date.Format "02 Jan 2006" }}</time>
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,13 @@
+baseURL = 'https://uksfta.github.io/UKSFTA-COP/'
+languageCode = 'en-gb'
+title = 'UKSFTA | Intelligence Command'
+
+[params]
+    description = 'Common Operational Picture (COP) for UKSF Taskforce Alpha'
+    unitName = 'UKSF Taskforce Alpha'
+    classification = 'UKSFTA OFFICIAL'
+    serviceName = 'Joint Intelligence & Data Portal'
+    supabaseUrl = ""
+    supabaseServiceRoleKey = ""
+
+[module]

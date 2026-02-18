@@ -1,0 +1,3 @@
+[submodule ".uksf_tools"]
+	path = .uksf_tools
+	url = git@github.com:UKSFTA/UKSFTA-Tools.git

@@ -1,0 +1,21 @@
+{
+    "categories": [
+        {
+            "label": "Unit Training",
+            "maps": [
+                { "id": "dagger_island", "name": "Dagger Island" }
+            ]
+        },
+        {
+            "label": "Active Campaign",
+            "maps": [
+                { "id": "zagorsk", "name": "Zagorsk (Ukraine)" }
+            ]
+        },
+        {
+            "label": "Side Operations",
+            "maps": [
+            ]
+        }
+    ]
+}
