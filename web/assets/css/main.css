@@ -1,175 +1,24 @@
-/* UKSFTA | Intelligence Command Portal */
-:root {
-    --color-bg: #0a0a0a;
-    --color-surface: #151515;
-    --color-accent: #4caf50;
-    --color-accent-dim: rgba(76, 175, 80, 0.2);
-    --color-text: #e0e0e0;
-    --color-text-dim: #888;
-    --color-danger: #f44336;
-    --color-blue: #2196f3;
-    --font-main: 'RobotoCondensed', 'Segoe UI', Tahoma, sans-serif;
-    --header-height: 60px;
-}
-
-body {
-    margin: 0; padding: 0;
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-main);
-    overflow: hidden;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Classification Banners */
-.classification-banner {
-    background: #004d00;
-    color: white;
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 2px;
-    padding: 2px 0;
-    font-weight: bold;
-    z-index: 2000;
-}
-
-header {
-    height: var(--header-height);
-    background: var(--color-surface);
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-header h1 {
-    margin: 0; font-size: 18px;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.service-name {
-    font-size: 12px; color: var(--color-text-dim);
-    text-transform: uppercase;
-}
-
-.unit-brand {
-    font-weight: bold; font-size: 14px;
-}
-
+// Force absolute layout to prevent MOD framework interference
 #map-container {
-    flex: 1;
+    position: fixed !important;
+    top: 100px; // Classification Banner + Header height
+    bottom: 50px; // Footer + Classification Banner
+    left: 0;
+    right: 0;
     display: flex;
-    position: relative;
+    background-color: #000;
 }
 
 #map {
     flex: 1;
-    background: #000;
+    height: 100%;
 }
 
-/* Control Panel */
 #controls {
-    width: 320px;
-    background: var(--color-surface);
+    width: 340px;
+    background-color: #121212;
     border-left: 1px solid #333;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
     z-index: 1000;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-}
-
-#controls h3 {
-    margin: 0 0 10px 0;
-    font-size: 14px;
-    color: var(--color-accent);
-    border-bottom: 1px solid var(--color-accent-dim);
-    padding-bottom: 5px;
-}
-
-.control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.control-group label {
-    font-size: 10px;
-    color: var(--color-text-dim);
-    text-transform: uppercase;
-}
-
-select, input {
-    background: #222;
-    border: 1px solid #444;
-    color: white;
-    padding: 8px;
-    font-family: inherit;
-}
-
-.button-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-}
-
-button {
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 11px;
-    padding: 10px;
-    border: none;
-    color: white;
-    transition: all 0.2s;
-}
-
-.btn-primary {
-    background: var(--color-accent);
-    color: black;
-    margin-top: auto;
-}
-
-.btn-primary:hover {
-    background: #66bb6a;
-    box-shadow: 0 0 10px var(--color-accent-dim);
-}
-
-#status {
-    font-size: 10px;
-    text-align: center;
-    color: var(--color-accent);
-    margin-top: 5px;
-}
-
-footer {
-    height: 40px;
-    background: var(--color-surface);
-    border-top: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    font-size: 10px;
-    color: var(--color-text-dim);
-}
-
-.doctrine-ref {
-    color: var(--color-accent);
-}
-
-/* Custom Leaflet Tooltips */
-.leaflet-tooltip {
-    background: rgba(0,0,0,0.8) !important;
-    border: 1px solid var(--color-accent) !important;
-    color: var(--color-accent) !important;
-    font-family: var(--font-main);
-    text-transform: uppercase;
-    font-weight: bold;
+    overflow-y: auto;
 }

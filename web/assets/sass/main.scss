@@ -1,0 +1,86 @@
+// UKSFTA | Ministry of Defence Tactical Design System
+
+// 1. Silence deprecation warnings BEFORE any imports
+$govuk-suppressed-warnings: (
+  "libsass": true,
+  "import-using-all": true,
+  "$govuk-canvas-background-colour": true
+);
+
+$govuk-text-colour: #e0e0e0;
+$govuk-brand-colour: #4caf50;
+
+// 2. Official GDS Import
+@import "govuk/index";
+
+// 3. --- ABSOLUTE TACTICAL OVERRIDES ---
+body, html, .govuk-template__body {
+    background-color: #050505 !important;
+    color: #e0e0e0 !important;
+    margin: 0; padding: 0;
+    height: 100vh; width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.uk-eyes-only-banner {
+    background-color: #004d00;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 2px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+
+header.govuk-header {
+    background-color: #121212 !important;
+    border-bottom: 1px solid #333 !important;
+    padding: 10px 20px;
+    flex-shrink: 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+    background-color: #050505;
+}
+
+#map-container {
+    flex: 1;
+    display: flex;
+    position: relative;
+    background-color: #000;
+    width: 100%; height: 100%;
+}
+
+#map {
+    flex: 1;
+    height: 100%;
+}
+
+#controls {
+    width: 340px;
+    background-color: #121212;
+    border-left: 1px solid #333;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+}
+
+.govuk-button--tactical {
+    background-color: #4caf50 !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
+.tactical-input {
+    background-color: #000 !important;
+    color: #4caf50 !important;
+    border: 1px solid #333 !important;
+}

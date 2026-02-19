@@ -1,20 +1,22 @@
 {
     "categories": [
         {
+            "label": "Zagorsk Operations",
+            "maps": [
+                { "id": "zagor_zagorsk_big_city", "name": "Zagorsk: Big City" },
+                { "id": "zagor_zagorsk_biglakes", "name": "Zagorsk: Big Lakes" },
+                { "id": "zagor_zagorsk_countryside", "name": "Zagorsk: Countryside" },
+                { "id": "zagor_zagorsk_khotkovo", "name": "Zagorsk: Khotkovo" },
+                { "id": "zagor_zagorsk_longlake", "name": "Zagorsk: Long Lake" },
+                { "id": "zagor_zagorsk_quarries", "name": "Zagorsk: Quarries" },
+                { "id": "zagor_zagorsk_reserved_forest", "name": "Zagorsk: Reserved Forest" },
+                { "id": "zagor_zagorsk_trud", "name": "Zagorsk: Trud" }
+            ]
+        },
+        {
             "label": "Unit Training",
             "maps": [
                 { "id": "dagger_island", "name": "Dagger Island" }
-            ]
-        },
-        {
-            "label": "Active Campaign",
-            "maps": [
-                { "id": "zagorsk", "name": "Zagorsk (Ukraine)" }
-            ]
-        },
-        {
-            "label": "Side Operations",
-            "maps": [
             ]
         }
     ]

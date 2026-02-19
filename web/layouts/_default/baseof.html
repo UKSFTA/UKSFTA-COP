@@ -1,52 +1,43 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="en" class="govuk-template bg-black">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ .Title }} | {{ .Site.Title }}</title>
-    
-    <!-- Supabase Context -->
+    <title>{{ .Title }} | UKSFTA Tactical Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="supabase-url" content="{{ .Site.Params.supabaseUrl }}">
     <meta name="supabase-service-role-key" content="{{ .Site.Params.supabaseServiceRoleKey }}">
 
-    <!-- Leaflet.js -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
-    <!-- Leaflet Draw -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
-    {{ $style := resources.Get "css/main.css" | minify | fingerprint }}
+    <!-- MOD Tactical Design System -->
+    {{ $opts := dict "transpiler" "libsass" "targetPath" "css/main.css" "includePaths" (slice "node_modules/govuk-frontend/dist") }}
+    {{ $style := resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 </head>
-<body>
-    <div class="classification-banner top">{{ .Site.Params.classification }}</div>
-    
-    <header>
-        <div class="logo-area">
-            <a href="{{ .Site.BaseURL | relURL }}">
-                <h1>{{ .Site.Title }}</h1>
-            </a>
-            <span class="service-name">{{ .Site.Params.serviceName }}</span>
+<body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <div class="uk-eyes-only-banner">SECRET // {{ .Site.Params.classification }}</div>
+    <header class="govuk-header" role="banner" data-module="govuk-header">
+        <div class="govuk-header__container govuk-width-container">
+            <div class="govuk-header__logo">
+                <span class="govuk-header__logotype">
+                    <span class="govuk-header__logotype-text">HM Government</span>
+                </span>
+            </div>
+            <div class="govuk-header__content">
+                <a href="/" class="govuk-header__link govuk-header__service-name">UKSFTA | Common Operational Picture</a>
+            </div>
         </div>
-        <div class="unit-brand">{{ .Site.Params.unitName }}</div>
     </header>
-
-    <main>
+    <main class="govuk-main-wrapper--auto-spacing" id="main-content" role="main">
         {{ block "main" . }}{{ end }}
     </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.unitName }}. Internal Use Only.</p>
-            <p class="doctrine-ref">Standard: UKSFTA SOP-01 (Mapping & Intel)</p>
-        </div>
-    </footer>
-
-    <div class="classification-banner bottom">{{ .Site.Params.classification }}</div>
-
-    {{ $js := resources.Get "js/map.js" | minify | fingerprint }}
+    <div class="uk-eyes-only-banner">SECRET // {{ .Site.Params.classification }}</div>
+    <script src="/theatre/all.js"></script>
+    {{ $js := resources.Get "js/tactical_engine.js" | fingerprint }}
     <script src="{{ $js.RelPermalink }}"></script>
 </body>
 </html>

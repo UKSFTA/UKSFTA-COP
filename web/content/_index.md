@@ -1,4 +1,3 @@
 ---
-title: "Common Operational Picture"
-layout: "index"
+title: "Intelligence Dashboard"
 ---

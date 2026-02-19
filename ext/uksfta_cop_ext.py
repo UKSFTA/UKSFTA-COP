@@ -9,7 +9,8 @@ from pathlib import Path
 
 # Set up paths
 EXT_DIR = Path(__file__).parent.resolve()
-ENV_PATH = EXT_DIR.parent / ".env"
+ROOT_DIR = EXT_DIR.parent
+ENV_PATH = ROOT_DIR / ".env"
 
 load_dotenv(dotenv_path=ENV_PATH)
 
@@ -32,6 +33,40 @@ def to_sqf_array(data):
         return '""'
     else:
         return str(data)
+
+def get_maps():
+    """Returns a list of maps in SQF format [[id, name, res, w, h], ...]"""
+    theatres_path = ROOT_DIR / "web" / "data" / "theatres.json"
+    all_json_path = ROOT_DIR / "web" / "static" / "community" / "maps" / "all.json"
+    
+    if not theatres_path.exists() or not all_json_path.exists():
+        return '["error", "Metadata files missing"]'
+        
+    try:
+        with open(theatres_path, "r", encoding="utf-8") as f:
+            theatres_data = json.load(f)
+        with open(all_json_path, "r", encoding="utf-8-sig") as f:
+            all_maps_data = json.load(f)
+            
+        sqf_maps = []
+        for cat in theatres_data.get("categories", []):
+            for m in cat.get("maps", []):
+                mid = m["id"]
+                mname = m["name"]
+                
+                # Try to get details from all.json
+                details = all_maps_data.get(mid, {})
+                res = details.get("resolution", 1)
+                world_size = details.get("worldSize", 10240)
+                
+                width = int(world_size / res)
+                height = int(world_size / res)
+                
+                sqf_maps.append([mid, mname, res, width, height])
+                
+        return to_sqf_array(sqf_maps)
+    except Exception as e:
+        return to_sqf_array(["error", str(e)])
 
 def fetch_drawings(theatre="altis"):
     if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
@@ -73,7 +108,6 @@ def update_session(theatre):
     }
     
     try:
-        # We always update the row with ID 1
         data = {
             "id": 1,
             "world_name": theatre,
@@ -100,6 +134,11 @@ def main():
         print(fetch_drawings(arg))
     elif cmd == "update_session":
         print(update_session(arg))
+    elif cmd == "getmaps":
+        print(get_maps())
+    elif cmd == "initdb":
+        # Stub for initialization, since we use stateless REST API
+        print("OK" if SUPABASE_URL else "FAIL")
     elif cmd == "test":
         print("OK" if SUPABASE_URL else "FAIL")
 

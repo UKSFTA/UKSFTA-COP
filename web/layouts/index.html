@@ -1,63 +1,60 @@
 {{ define "main" }}
-<div id="map-container">
-    <div id="map"></div>
+<div id="controls" class="w-[340px] bg-tactical-surface border-l border-tactical-border p-6 flex flex-col gap-6 z-[1000] overflow-y-auto shadow-[-10px_0_30px_rgba(0,0,0,0.5)]">
     
-    <!-- Intel Command Sidebar -->
-    <div id="controls">
-        <h3>INTEL CONTROL PANEL</h3>
-        
-        <div class="control-group">
-            <label>AOR / THEATRE:</label>
-            <select id="theatre-select" onchange="changeTheatre(this.value)">
-                {{ range .Site.Data.theatres.categories }}
-                <optgroup label="{{ .label }}">
-                    {{ range .maps }}
-                    <option value="{{ .id }}">{{ .name }}</option>
-                    {{ end }}
-                </optgroup>
-                {{ end }}
-            </select>
-        </div>
+    <div class="border-b border-tactical-border pb-2">
+        <h3 class="text-tactical-green text-xs font-mono tracking-widest flex items-center gap-2">
+            <span class="w-2 h-2 bg-tactical-green rounded-full animate-pulse"></span>
+            Intelligence Command Panel
+        </h3>
+    </div>
 
-        <div class="control-group">
-            <label>OBJECTIVE / TARGET NAME:</label>
-            <input type="text" id="marker-text" placeholder="e.g. AO RED">
-        </div>
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Area of Operations</label>
+        <select id="theatre-select" onchange="changeTheatre(this.value)" class="bg-black border border-tactical-border text-tactical-green p-3 text-xs focus:border-tactical-green outline-none transition-all font-mono uppercase">
+            {{ range .Site.Data.theatres.categories }}
+            <optgroup label="{{ .label }}" class="bg-tactical-surface text-gray-400">
+                {{ range .maps }}<option value="{{ .id }}" class="text-tactical-green">{{ .name }}</option>{{ end }}
+            </optgroup>
+            {{ end }}
+        </select>
+    </div>
 
-        <div class="control-group">
-            <label>HOSTILITY (SOP-01):</label>
-            <div class="button-grid">
-                <button onclick="setColor('#0000ff')" style="background:#003366; border-left: 4px solid #0000ff">FRIENDLY</button>
-                <button onclick="setColor('#ff0000')" style="background:#660000; border-left: 4px solid #ff0000">HOSTILE</button>
-                <button onclick="setColor('#00ff00')" style="background:#004400; border-left: 4px solid #00ff00">NEUTRAL</button>
-                <button onclick="setColor('#ffff00')" style="background:#555500; border-left: 4px solid #ffff00">UNKNOWN</button>
-            </div>
-        </div>
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Objective Identifier</label>
+        <input type="text" id="marker-text" placeholder="AO RED / PHASE LINE X" class="bg-black border border-tactical-border text-tactical-green p-3 text-xs focus:border-tactical-green outline-none transition-all font-mono placeholder:text-gray-800">
+    </div>
 
-        <div class="control-group">
-            <label>UNIT / TRACE TYPE:</label>
-            <select id="symbol-select" onchange="setSymbol(this.value)">
-                <optgroup label="Ground Forces">
-                    <option value="b_inf">Sect / Plt (Light)</option>
-                    <option value="b_motor_inf">Sect / Plt (Motorised)</option>
-                    <option value="b_mech_inf">Sect / Plt (Mechanised)</option>
-                </optgroup>
-                <optgroup label="Armour & Cav">
-                    <option value="b_armor">Armour / CR2</option>
-                    <option value="b_recon">Recon / Cav</option>
-                    <option value="b_art">Artillery / GMLRS</option>
-                </optgroup>
-                <optgroup label="Command & Support">
-                    <option value="b_hq">HQ Node</option>
-                    <option value="b_med">Medical / RAP</option>
-                    <option value="b_maint">REM / EME</option>
-                </optgroup>
-            </select>
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Hostility Classification (SOP-01)</label>
+        <div class="grid grid-cols-2 gap-2">
+            <button onclick="setColor('#0000ff')" class="bg-[#003366] border-l-4 border-tactical-blue text-white p-3 text-[10px] font-bold uppercase hover:bg-blue-900 transition-all text-left">Friendly</button>
+            <button onclick="setColor('#ff0000')" class="bg-[#660000] border-l-4 border-red-600 text-white p-3 text-[10px] font-bold uppercase hover:bg-red-900 transition-all text-left">Hostile</button>
+            <button onclick="setColor('#00ff00')" class="bg-[#004400] border-l-4 border-green-600 text-white p-3 text-[10px] font-bold uppercase hover:bg-green-900 transition-all text-left">Neutral</button>
+            <button onclick="setColor('#ffff00')" class="bg-[#555500] border-l-4 border-amber-500 text-white p-3 text-[10px] font-bold uppercase hover:bg-yellow-900 transition-all text-left">Unknown</button>
         </div>
+    </div>
 
-        <hr>
-        <button id="save-drawings" class="btn-primary">PUBLISH INTEL TO COP</button>
-        <div id="status">COMMS STATUS: UPLINK READY</div>
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">NATO Operational Symbol</label>
+        <select id="symbol-select" onchange="setSymbol(this.value)" class="bg-black border border-tactical-border text-tactical-green p-3 text-xs focus:border-tactical-green outline-none transition-all font-mono uppercase">
+            <optgroup label="Ground Forces">
+                <option value="b_inf">Sect / Plt (Infantry)</option>
+                <option value="b_armor">Armoured (Main Battle Tank)</option>
+                <option value="b_recon">Reconnaissance (Cavalry)</option>
+                <option value="b_hq">HQ / Command Node</option>
+            </optgroup>
+            <optgroup label="Support & Logistics">
+                <option value="b_art">Artillery (GMLRS/AS90)</option>
+                <option value="b_med">Medical (RAP/CCP)</option>
+                <option value="b_maint">Maintenance (EME)</option>
+                <option value="b_air">Aviation (RW)</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="mt-auto pt-6 flex flex-col gap-4">
+        <button id="save-drawings" class="bg-tactical-green text-black font-bold text-xs p-4 hover:bg-green-400 transition-all uppercase tracking-widest shadow-[0_0_20px_rgba(76,175,80,0.2)]">Publish Intelligence to COP</button>
+        <p class="govuk-body-s font-mono text-center text-green-600">STATUS: ENCRYPTED_UPLINK</p>
     </div>
 </div>
 {{ end }}

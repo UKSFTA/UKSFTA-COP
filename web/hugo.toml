@@ -1,13 +1,11 @@
-baseURL = 'https://uksfta.github.io/UKSFTA-COP/'
+baseURL = 'http://localhost:1313/'
 languageCode = 'en-gb'
-title = 'UKSFTA | Intelligence Command'
+title = 'UKSFTA | Intelligence Portal'
+theme = []
 
 [params]
-    description = 'Common Operational Picture (COP) for UKSF Taskforce Alpha'
-    unitName = 'UKSF Taskforce Alpha'
-    classification = 'UKSFTA OFFICIAL'
-    serviceName = 'Joint Intelligence & Data Portal'
-    supabaseUrl = ""
-    supabaseServiceRoleKey = ""
-
-[module]
+    classification = "SECRET // UK EYES ONLY"
+    unitName = "UKSF TASKFORCE ALPHA"
+    serviceName = "Common Operational Picture (COP)"
+    supabaseUrl = "" # Will be injected by run_dev.sh
+    supabaseServiceRoleKey = "" # Will be injected by run_dev.sh
