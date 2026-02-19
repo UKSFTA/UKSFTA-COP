@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - 'web/**'
+      - 'theatre_archive/**'
 
 permissions:
   contents: read
@@ -19,14 +20,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Hugo CLI
-        run: |
-          wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.128.0/hugo_extended_0.128.0_linux-amd64.deb
-          sudo dpkg -i hugo.deb
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.155.3'
+          extended: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Install Dependencies
+        run: cd web && npm install
+
       - name: Build with Hugo
         env:
           HUGO_PARAMS_SUPABASEURL: ${{ secrets.SUPABASE_URL }}
@@ -40,6 +55,7 @@ jobs:
             mkdir -p public/theatre
             cp -r ../theatre_archive/* public/theatre/
           fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

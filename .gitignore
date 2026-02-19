@@ -29,7 +29,7 @@ web/resources/_gen/
 node_modules/
 
 # Intelligence Archive (Large Map Tiles)
-theatre_archive/
+# theatre_archive/
 web/static/theatre/
 
 # Local Environment
