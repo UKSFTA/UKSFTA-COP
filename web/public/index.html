@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+<head>
+	<meta name="generator" content="Hugo 0.155.3"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <title>Intelligence Dashboard - UKSFTA COP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c0c">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="supabase-url" content="">
+  <meta name="supabase-service-role-key" content="">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.min.1e443c36aee49e02050f0cdaa40bd4b0d5db7a12aa6b303ed1373a5479f98635.css">
+</head>
+<body class="govuk-template__body">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+  <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+  <div class="app-classification-banner">
+      OFFICIAL-SENSITIVE // UK EYES ONLY
+  </div>
+
+  <header class="govuk-header" role="banner" data-module="govuk-header">
+    <div class="govuk-header__container govuk-width-container">
+      <div class="govuk-header__logo">
+        <a href="/" class="govuk-header__link govuk-header__link--homepage">
+          <span class="govuk-header__logotype">
+            <svg aria-hidden="true" focusable="false" class="govuk-header__logotype-crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 97" height="30" width="36">
+              <path fill="currentColor" fill-rule="evenodd" d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zm9 47.7c-2.5-4-1.9-9.3 1.5-12.7 3.4-3.5 8.9-3.5 12.3-.2l.2.2c3.2 3.3 3.3 8.6.2 12-3.3 3.3-8.8 3.3-12.2.1l-.3-.3c-.8-.9-1.3-1.9-1.7-2.9zm15.7-18.1c-6.8-6.1-5.6-17.3 2.1-22.1 6.8-4.2 16.3-1.6 19.9 5.3 3.6 7 1.1 15.6-5.8 19.8-6.8 4.1-15 2.1-19.1-3.3l-2.9 3.2c4.8 6.5 14.5 9 22.8 5 9.4-4.5 13-15.6 8.3-24.8-4.7-9.3-16.1-12.2-25.2-6.5C40.6 30.7 37 40.5 41.7 49l8 10.8zM80 88.6c-3.6 1.4-7.7-.3-9.1-3.9-1.5-3.6.2-7.8 3.9-9.1 3.6-1.5 7.6.3 9.1 3.9 1.5 3.5-.3 7.7-3.9 9.1zM67.3 54.4c3.4-3.5 8.9-3.5 12.3-.1 3.3 3.3 3.3 8.7.1 12-3.3 3.4-8.9 3.4-12.2.1l-.3-.3c-3.3-3.3-3.3-8.7-.1-12.1l.2-.2c.8-1 1.7-1.7 2.8-2.3zm31-2.9c3.6-1.5 7.7.2 9.1 3.8 1.5 3.6-.2 7.7-3.9 9.1-3.6 1.5-7.7-.2-9.1-3.8-1.5-3.5.2-7.7 3.9-9.1zM82 23.3c-1.1-1.2-2.3-2.3-3.7-3.2l-2.8 3.2c3.5 2.3 5.4 6.4 4.8 10.6-1 6.4-7 10.8-13.4 9.8-6.4-1-10.8-7-9.8-13.4.6-4.2 3.6-7.5 7.6-8.8l-2.1-3.9c-5.7 1.8-10 6.6-10.9 12.6-1.4 9.4 5.1 18.2 14.5 19.6 9.4 1.4 18.2-5.1 19.6-14.5.9-6-1.7-11.8-5.8-15.8zM92.5 9c-3.7-1.5-7.8.2-9.2 3.8-1.5 3.6.2 7.7 3.9 9.1 3.6 1.5 7.7-.2 9.2-3.8 1.5-3.6-.2-7.8-3.9-9.1zM28.4 86.8c1.5 3.6-.2 7.8-3.9 9.1-3.6 1.5-7.7-.2-9.1-3.8-1.5-3.6.2-7.8 3.9-9.1 3.6-1.5 7.7.2 9.1 3.8zm-5.2-46c-3.3-3.3-8.8-3.3-12.2 0-3.3 3.3-3.3 8.8 0 12.2 3.3 3.3 8.8 3.3 12.2 0 3.3-3.3 3.3-8.8 0-12.2z"></path>
+            </svg>
+            <span class="govuk-header__logotype-text">
+              GOV.UK
+            </span>
+          </span>
+          <span class="govuk-header__product-name">
+            UKSFTA Common Operational Picture
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+    
+
+<div id="access-control" class="govuk-width-container govuk-!-margin-top-9">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-xl">UKSF TASKFORCE ALPHA</span>
+            <h1 class="govuk-heading-xl">Intelligence & Surveillance Portal</h1>
+            
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-visually-hidden">Warning</span>
+                    OFFICIAL-SENSITIVE: This system contains information related to national security. 
+                    Unauthorised access or disclosure is a criminal offence under the Official Secrets Act.
+                </strong>
+            </div>
+
+            <p class="govuk-body">Access is restricted to authorized UKSFTA personnel. All interactions are logged and audited by the Unit Intelligence Cell (G2).</p>
+            
+            <button class="govuk-button govuk-button--start" data-module="govuk-button" onclick="unlockPortal()">
+                Enter Portal
+                <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div id="portal-content" class="cop-dashboard" style="display: none;">
+    
+    
+    <div class="cop-map-area">
+        
+        <div style="position: absolute; right: 20px; top: 10px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 5px; border: 2px solid #0b0c0c; box-shadow: 3px 3px 0px #0b0c0c;">
+            <div class="govuk-radios govuk-radios--small govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="style-os" name="map-style" type="radio" value="os" checked onchange="setMapStyle(this.value)">
+                    <label class="govuk-label govuk-radios__label" for="style-os">OS Style</label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="style-mil" name="map-style" type="radio" value="military" onchange="setMapStyle(this.value)">
+                    <label class="govuk-label govuk-radios__label" for="style-mil">MIL Tactical</label>
+                </div>
+            </div>
+        </div>
+        <div id="map" style="border: 2px solid #0b0c0c;"></div>
+    </div>
+
+    
+    <div class="cop-sidebar">
+        <div class="govuk-panel govuk-panel--confirmation" style="background-color: #0b0c0c; border: 1px solid #4caf50; padding: 5px; margin-bottom: 10px; text-align: left;">
+            <h2 class="govuk-panel__title" style="font-size: 0.9rem; margin-bottom: 2px;">LIVE SESSION</h2>
+            <div class="govuk-panel__body" style="font-size: 0.75rem;">
+                <span id="session-status" class="govuk-tag govuk-tag--grey govuk-!-font-size-14">OFFLINE</span>
+                <span id="active-theatre-display" class="govuk-!-font-weight-bold" style="margin-left: 5px;">UNKNOWN</span>
+            </div>
+        </div>
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Command & Control</h3>
+        
+        
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="theatre-select">AO</label>
+          <select class="govuk-select govuk-!-width-full govuk-!-font-size-14" id="theatre-select" name="theatre" onchange="changeTheatre(this.value)">
+            
+            <optgroup label="Zagorsk Operations">
+                <option value="zagor_zagorsk_big_city">Zagorsk: Big City</option><option value="zagor_zagorsk_biglakes">Zagorsk: Big Lakes</option><option value="zagor_zagorsk_countryside">Zagorsk: Countryside</option><option value="zagor_zagorsk_khotkovo">Zagorsk: Khotkovo</option><option value="zagor_zagorsk_longlake">Zagorsk: Long Lake</option><option value="zagor_zagorsk_quarries">Zagorsk: Quarries</option><option value="zagor_zagorsk_reserved_forest">Zagorsk: Reserved Forest</option><option value="zagor_zagorsk_trud">Zagorsk: Trud</option>
+            </optgroup>
+            
+            <optgroup label="Unit Training">
+                <option value="dagger_island">Dagger Island</option>
+            </optgroup>
+            
+          </select>
+        </div>
+
+        
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="marker-text">Objective / PL</label>
+          <input class="govuk-input govuk-!-width-full govuk-!-font-size-14" id="marker-text" name="marker-text" type="text" placeholder="e.g. OBJ ALPHA">
+        </div>
+
+        
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="operator-callsign">Callsign</label>
+          <input class="govuk-input govuk-!-width-full govuk-!-font-size-14" id="operator-callsign" name="operator-callsign" type="text" placeholder="e.g. Z-1">
+        </div>
+
+        
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s" style="font-size: 14px;">Hostility</legend>
+                <div class="govuk-button-group govuk-!-margin-bottom-0">
+                  <button class="govuk-button govuk-!-font-size-14" style="margin-right: 2px; padding: 5px 10px;" data-module="govuk-button" onclick="setColor('#0000ff')">BLU</button>
+                  <button class="govuk-button govuk-button--warning govuk-!-font-size-14" style="margin-right: 2px; padding: 5px 10px;" data-module="govuk-button" onclick="setColor('#ff0000')">OPF</button>
+                  <button class="govuk-button govuk-button--secondary govuk-!-font-size-14" style="margin-right: 2px; padding: 5px 10px;" data-module="govuk-button" onclick="setColor('#00ff00')">IND</button>
+                </div>
+            </fieldset>
+        </div>
+
+        
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="symbol-select">NATO Symbol (APP-6D)</label>
+          <select class="govuk-select govuk-!-width-full govuk-!-font-size-14" id="symbol-select" onchange="setSymbol(this.value)">
+            <optgroup label="Ground Forces">
+                <option value="b_inf">Infantry (Light)</option>
+                <option value="b_motor_inf">Inf (Motorized)</option>
+                <option value="b_mech_inf">Inf (Mech)</option>
+                <option value="b_armor">Armor (MBT)</option>
+                <option value="b_recon">Recon (Cav)</option>
+                <option value="b_hq">HQ Node</option>
+            </optgroup>
+            <optgroup label="Support">
+                <option value="b_art">Arty (AS90)</option>
+                <option value="b_mor">Mortars</option>
+                <option value="b_med">Medical (RAP)</option>
+                <option value="b_eng">Engrs (RE)</option>
+                <option value="b_air">Avn (RW)</option>
+                <option value="b_uav">UAV</option>
+            </optgroup>
+          </select>
+        </div>
+
+        
+        <button id="save-drawings" class="govuk-button govuk-!-width-full govuk-!-margin-bottom-2 govuk-!-font-size-14" data-module="govuk-button">Publish Intelligence</button>
+        <button id="measure-status" class="govuk-button govuk-button--secondary govuk-!-width-full govuk-!-margin-bottom-2 govuk-!-font-size-14" data-module="govuk-button" onclick="toggleMeasure()">Rangefinder</button>
+
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="show-grid" name="grid" type="checkbox" checked onchange="toggleGrid(this.checked)">
+                <label class="govuk-label govuk-checkboxes__label govuk-!-font-size-14" for="show-grid">Show 1km Grid</label>
+            </div>
+        </div>
+
+        <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-margin-bottom-2" style="border-left-color: #003078; padding: 5px 10px;">
+            <p class="govuk-body-s" id="upload-status" style="margin-bottom: 2px;">STATUS: IDLE</p>
+            <p class="govuk-body-s govuk-!-font-weight-bold" id="grid-ref" style="font-family: monospace;">GRID: WAITING...</p>
+        </div>
+    </div>
+</div>
+
+  </main>
+
+  <footer class="govuk-footer" role="contentinfo">
+    <div class="govuk-width-container">
+      <div class="govuk-footer__meta">
+        <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+          <h2 class="govuk-visually-hidden">Support links</h2>
+          <span class="govuk-footer__licence-description">
+            UKSF Taskforce Alpha — Unit Intelligence Cell (G2)<br>
+            Operational Intelligence System. Authorized Use Only.
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/theatre/all.js"></script>
+  
+  <script src="/js/tactical_engine.b107d64659f6552ffc43261c46181cdf4b3ec2dee9d53c3cfcb618aa34a8a4c8.js"></script>
+</body>
+</html>

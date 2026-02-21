@@ -1,60 +1,139 @@
 {{ define "main" }}
-<div id="controls" class="w-[340px] bg-tactical-surface border-l border-tactical-border p-6 flex flex-col gap-6 z-[1000] overflow-y-auto shadow-[-10px_0_30px_rgba(0,0,0,0.5)]">
-    
-    <div class="border-b border-tactical-border pb-2">
-        <h3 class="text-tactical-green text-xs font-mono tracking-widest flex items-center gap-2">
-            <span class="w-2 h-2 bg-tactical-green rounded-full animate-pulse"></span>
-            Intelligence Command Panel
-        </h3>
-    </div>
+<!-- Access Control Landing (Centered) -->
+<div id="access-control" class="govuk-width-container govuk-!-margin-top-9">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-xl">UKSF TASKFORCE ALPHA</span>
+            <h1 class="govuk-heading-xl">Intelligence & Surveillance Portal</h1>
+            
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-visually-hidden">Warning</span>
+                    OFFICIAL-SENSITIVE: This system contains information related to national security. 
+                    Unauthorised access or disclosure is a criminal offence under the Official Secrets Act.
+                </strong>
+            </div>
 
-    <div class="flex flex-col gap-2">
-        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Area of Operations</label>
-        <select id="theatre-select" onchange="changeTheatre(this.value)" class="bg-black border border-tactical-border text-tactical-green p-3 text-xs focus:border-tactical-green outline-none transition-all font-mono uppercase">
-            {{ range .Site.Data.theatres.categories }}
-            <optgroup label="{{ .label }}" class="bg-tactical-surface text-gray-400">
-                {{ range .maps }}<option value="{{ .id }}" class="text-tactical-green">{{ .name }}</option>{{ end }}
-            </optgroup>
-            {{ end }}
-        </select>
-    </div>
-
-    <div class="flex flex-col gap-2">
-        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Objective Identifier</label>
-        <input type="text" id="marker-text" placeholder="AO RED / PHASE LINE X" class="bg-black border border-tactical-border text-tactical-green p-3 text-xs focus:border-tactical-green outline-none transition-all font-mono placeholder:text-gray-800">
-    </div>
-
-    <div class="flex flex-col gap-2">
-        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Hostility Classification (SOP-01)</label>
-        <div class="grid grid-cols-2 gap-2">
-            <button onclick="setColor('#0000ff')" class="bg-[#003366] border-l-4 border-tactical-blue text-white p-3 text-[10px] font-bold uppercase hover:bg-blue-900 transition-all text-left">Friendly</button>
-            <button onclick="setColor('#ff0000')" class="bg-[#660000] border-l-4 border-red-600 text-white p-3 text-[10px] font-bold uppercase hover:bg-red-900 transition-all text-left">Hostile</button>
-            <button onclick="setColor('#00ff00')" class="bg-[#004400] border-l-4 border-green-600 text-white p-3 text-[10px] font-bold uppercase hover:bg-green-900 transition-all text-left">Neutral</button>
-            <button onclick="setColor('#ffff00')" class="bg-[#555500] border-l-4 border-amber-500 text-white p-3 text-[10px] font-bold uppercase hover:bg-yellow-900 transition-all text-left">Unknown</button>
+            <p class="govuk-body">Access is restricted to authorized UKSFTA personnel. All interactions are logged and audited by the Unit Intelligence Cell (G2).</p>
+            
+            <button class="govuk-button govuk-button--start" data-module="govuk-button" onclick="unlockPortal()">
+                Enter Portal
+                <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
+            </button>
         </div>
     </div>
+</div>
 
-    <div class="flex flex-col gap-2">
-        <label class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">NATO Operational Symbol</label>
-        <select id="symbol-select" onchange="setSymbol(this.value)" class="bg-black border border-tactical-border text-tactical-green p-3 text-xs focus:border-tactical-green outline-none transition-all font-mono uppercase">
-            <optgroup label="Ground Forces">
-                <option value="b_inf">Sect / Plt (Infantry)</option>
-                <option value="b_armor">Armoured (Main Battle Tank)</option>
-                <option value="b_recon">Reconnaissance (Cavalry)</option>
-                <option value="b_hq">HQ / Command Node</option>
-            </optgroup>
-            <optgroup label="Support & Logistics">
-                <option value="b_art">Artillery (GMLRS/AS90)</option>
-                <option value="b_med">Medical (RAP/CCP)</option>
-                <option value="b_maint">Maintenance (EME)</option>
-                <option value="b_air">Aviation (RW)</option>
-            </optgroup>
-        </select>
+<!-- Main Portal (Wide Flexbox Layout) -->
+<div id="portal-content" class="cop-dashboard" style="display: none;">
+    
+    <!-- Left: Strategic Map -->
+    <div class="cop-map-area">
+        <!-- Map Style Controls (Floating Top Right) -->
+        <div style="position: absolute; right: 20px; top: 10px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 5px; border: 2px solid #0b0c0c; box-shadow: 3px 3px 0px #0b0c0c;">
+            <div class="govuk-radios govuk-radios--small govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="style-os" name="map-style" type="radio" value="os" checked onchange="setMapStyle(this.value)">
+                    <label class="govuk-label govuk-radios__label" for="style-os">OS Style</label>
+                </div>
+                <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="style-mil" name="map-style" type="radio" value="military" onchange="setMapStyle(this.value)">
+                    <label class="govuk-label govuk-radios__label" for="style-mil">MIL Tactical</label>
+                </div>
+            </div>
+        </div>
+        <div id="map" style="border: 2px solid #0b0c0c;"></div>
     </div>
 
-    <div class="mt-auto pt-6 flex flex-col gap-4">
-        <button id="save-drawings" class="bg-tactical-green text-black font-bold text-xs p-4 hover:bg-green-400 transition-all uppercase tracking-widest shadow-[0_0_20px_rgba(76,175,80,0.2)]">Publish Intelligence to COP</button>
-        <p class="govuk-body-s font-mono text-center text-green-600">STATUS: ENCRYPTED_UPLINK</p>
+    <!-- Right: Command & Control -->
+    <div class="cop-sidebar">
+        <div class="govuk-panel govuk-panel--confirmation" style="background-color: #0b0c0c; border: 1px solid #4caf50; padding: 5px; margin-bottom: 10px; text-align: left;">
+            <h2 class="govuk-panel__title" style="font-size: 0.9rem; margin-bottom: 2px;">LIVE SESSION</h2>
+            <div class="govuk-panel__body" style="font-size: 0.75rem;">
+                <span id="session-status" class="govuk-tag govuk-tag--grey govuk-!-font-size-14">OFFLINE</span>
+                <span id="active-theatre-display" class="govuk-!-font-weight-bold" style="margin-left: 5px;">UNKNOWN</span>
+            </div>
+        </div>
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Command & Control</h3>
+        
+        <!-- Theatre Selection -->
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="theatre-select">AO</label>
+          <select class="govuk-select govuk-!-width-full govuk-!-font-size-14" id="theatre-select" name="theatre" onchange="changeTheatre(this.value)">
+            {{ range .Site.Data.theatres.categories }}
+            <optgroup label="{{ .label }}">
+                {{ range .maps }}<option value="{{ .id }}">{{ .name }}</option>{{ end }}
+            </optgroup>
+            {{ end }}
+          </select>
+        </div>
+
+        <!-- Objective Identifier -->
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="marker-text">Objective / PL</label>
+          <input class="govuk-input govuk-!-width-full govuk-!-font-size-14" id="marker-text" name="marker-text" type="text" placeholder="e.g. OBJ ALPHA">
+        </div>
+
+        <!-- Operator Callsign -->
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="operator-callsign">Callsign</label>
+          <input class="govuk-input govuk-!-width-full govuk-!-font-size-14" id="operator-callsign" name="operator-callsign" type="text" placeholder="e.g. Z-1">
+        </div>
+
+        <!-- Hostility Classification -->
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s" style="font-size: 14px;">Hostility</legend>
+                <div class="govuk-button-group govuk-!-margin-bottom-0">
+                  <button class="govuk-button govuk-!-font-size-14" style="margin-right: 2px; padding: 5px 10px;" data-module="govuk-button" onclick="setColor('#0000ff')">BLU</button>
+                  <button class="govuk-button govuk-button--warning govuk-!-font-size-14" style="margin-right: 2px; padding: 5px 10px;" data-module="govuk-button" onclick="setColor('#ff0000')">OPF</button>
+                  <button class="govuk-button govuk-button--secondary govuk-!-font-size-14" style="margin-right: 2px; padding: 5px 10px;" data-module="govuk-button" onclick="setColor('#00ff00')">IND</button>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Symbol Selection -->
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label govuk-label--s" for="symbol-select">NATO Symbol (APP-6D)</label>
+          <select class="govuk-select govuk-!-width-full govuk-!-font-size-14" id="symbol-select" onchange="setSymbol(this.value)">
+            <optgroup label="Ground Forces">
+                <option value="b_inf">Infantry (Light)</option>
+                <option value="b_motor_inf">Inf (Motorized)</option>
+                <option value="b_mech_inf">Inf (Mech)</option>
+                <option value="b_armor">Armor (MBT)</option>
+                <option value="b_recon">Recon (Cav)</option>
+                <option value="b_hq">HQ Node</option>
+            </optgroup>
+            <optgroup label="Support">
+                <option value="b_art">Arty (AS90)</option>
+                <option value="b_mor">Mortars</option>
+                <option value="b_med">Medical (RAP)</option>
+                <option value="b_eng">Engrs (RE)</option>
+                <option value="b_air">Avn (RW)</option>
+                <option value="b_uav">UAV</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Actions -->
+        <button id="save-drawings" class="govuk-button govuk-!-width-full govuk-!-margin-bottom-2 govuk-!-font-size-14" data-module="govuk-button">Publish Intelligence</button>
+        <button id="measure-status" class="govuk-button govuk-button--secondary govuk-!-width-full govuk-!-margin-bottom-2 govuk-!-font-size-14" data-module="govuk-button" onclick="toggleMeasure()">Rangefinder</button>
+
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="show-grid" name="grid" type="checkbox" checked onchange="toggleGrid(this.checked)">
+                <label class="govuk-label govuk-checkboxes__label govuk-!-font-size-14" for="show-grid">Show 1km Grid</label>
+            </div>
+        </div>
+
+        <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-margin-bottom-2" style="border-left-color: #003078; padding: 5px 10px;">
+            <p class="govuk-body-s" id="upload-status" style="margin-bottom: 2px;">STATUS: IDLE</p>
+            <p class="govuk-body-s govuk-!-font-weight-bold" id="grid-ref" style="font-family: monospace;">GRID: WAITING...</p>
+        </div>
     </div>
 </div>
 {{ end }}

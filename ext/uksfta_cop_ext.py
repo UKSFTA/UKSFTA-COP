@@ -95,6 +95,19 @@ def fetch_drawings(theatre="altis"):
     except Exception as e:
         return to_sqf_array(["error", str(e)])
 
+def log_event(event_type, actor="SYSTEM", details=""):
+    """Internal helper to log events to the audit table."""
+    if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY: return
+    headers = {
+        "apikey": SUPABASE_SERVICE_ROLE_KEY,
+        "Authorization": f"Bearer {SUPABASE_SERVICE_ROLE_KEY}",
+        "Content-Type": "application/json"
+    }
+    try:
+        data = {"event_type": event_type, "actor": actor, "details": details}
+        requests.post(f"{SUPABASE_URL}/rest/v1/tactical_logs", headers=headers, json=data, timeout=3)
+    except: pass
+
 def update_session(theatre):
     """Updates the global live session in Supabase."""
     if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY:
@@ -120,6 +133,7 @@ def update_session(theatre):
             timeout=5
         )
         response.raise_for_status()
+        log_event("SESSION_UPDATE", "ARMA_SERVER", f"Uplinked theatre: {theatre}")
         return '["ok", "Session Updated"]'
     except Exception as e:
         return to_sqf_array(["error", str(e)])

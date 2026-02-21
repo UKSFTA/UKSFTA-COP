@@ -31,21 +31,14 @@ UKSFTA_COP_fnc_syncLoop = {
 
 // --- SESSION UPLINK ---
 // Tells Supabase what map the server is currently on
-UKSFTA_COP_fnc_broadcastSession = {
-    if (!isServer) exitWith {};
-    private _activeTheatre = toLower worldName;
-    diag_log format ["[UKSFTA-COP] Broadcasting Live Session: %1", _activeTheatre];
-    // update_session|<worldName>
-    "uksfta_cop_ext" callExtension (format ["update_session|%1", _activeTheatre]);
-};
-
 if (isServer) then {
     [UKSFTA_COP_fnc_syncLoop, UKSFTA_COP_syncInterval] call CBA_fnc_addPerFrameHandler;
     
     // Broadcast session on mission start
     [] spawn {
-        sleep 10;
-        call UKSFTA_COP_fnc_broadcastSession;
+        sleep 5;
+        call UKSFTA_COP_fnc_updateLiveSession;
+        sleep 5;
         call UKSFTA_COP_fnc_syncLoop;
     };
 };

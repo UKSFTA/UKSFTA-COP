@@ -9,3 +9,4 @@ PREP(openLayerSelectGUI);
 PREP(requestDrawings);
 PREP(requestLayers);
 PREP(requestMaps);
+PREP(updateLiveSession);

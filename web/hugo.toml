@@ -4,7 +4,7 @@ title = 'UKSFTA | Intelligence Portal'
 theme = []
 
 [params]
-    classification = "SECRET // UK EYES ONLY"
+    classification = "OFFICIAL-SENSITIVE // UK EYES ONLY"
     unitName = "UKSF TASKFORCE ALPHA"
     serviceName = "Common Operational Picture (COP)"
     supabaseUrl = "" # Will be injected by run_dev.sh

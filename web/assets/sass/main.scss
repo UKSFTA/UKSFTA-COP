@@ -1,86 +1,110 @@
-// UKSFTA | Ministry of Defence Tactical Design System
+// Import GOV.UK Frontend
+$govuk-assets-path: "/assets/";
+$govuk-font-family: "GDS Transport", arial, sans-serif;
+$govuk-suppressed-warnings: ("libsass");
 
-// 1. Silence deprecation warnings BEFORE any imports
-$govuk-suppressed-warnings: (
-  "libsass": true,
-  "import-using-all": true,
-  "$govuk-canvas-background-colour": true
-);
+@import "govuk-frontend/dist/govuk/index";
 
-$govuk-text-colour: #e0e0e0;
-$govuk-brand-colour: #4caf50;
-
-// 2. Official GDS Import
-@import "govuk/index";
-
-// 3. --- ABSOLUTE TACTICAL OVERRIDES ---
-body, html, .govuk-template__body {
-    background-color: #050505 !important;
-    color: #e0e0e0 !important;
-    margin: 0; padding: 0;
-    height: 100vh; width: 100vw;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+// Custom Overrides for "Tactical" look within GDS
+.app-masthead {
+  padding: 20px 0;
+  background-color: govuk-colour("black");
+  color: govuk-colour("white");
+  border-bottom: 10px solid govuk-colour("mid-grey");
 }
 
-.uk-eyes-only-banner {
-    background-color: #004d00;
-    color: #ffffff;
+.app-classification-banner {
+    background-color: govuk-colour("black");
+    color: govuk-colour("white");
     text-align: center;
     font-weight: bold;
-    font-size: 12px;
-    padding: 2px 0;
+    padding: 5px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    flex-shrink: 0;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
-header.govuk-header {
-    background-color: #121212 !important;
-    border-bottom: 1px solid #333 !important;
-    padding: 10px 20px;
-    flex-shrink: 0;
-}
-
-main {
-    flex: 1;
+// COP Dashboard Layout (Flexbox)
+.cop-dashboard {
     display: flex;
-    min-height: 0;
-    background-color: #050505;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    height: calc(100vh - 160px);
+    overflow: hidden;
 }
 
-#map-container {
-    flex: 1;
+.cop-sidebar {
+    width: 320px;
+    flex-shrink: 0;
     display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.cop-map-area {
+    flex-grow: 1;
     position: relative;
-    background-color: #000;
-    width: 100%; height: 100%;
-}
-
-#map {
-    flex: 1;
+    min-width: 0;
     height: 100%;
 }
 
-#controls {
-    width: 340px;
-    background-color: #121212;
-    border-left: 1px solid #333;
-    padding: 20px;
-    z-index: 1000;
-    overflow-y: auto;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+// Map Container
+#map {
+    height: 100%;
+    width: 100%;
+    background-color: #f0f0f0;
+    cursor: crosshair;
+    position: relative;
 }
 
-.govuk-button--tactical {
-    background-color: #4caf50 !important;
-    color: #000000 !important;
-    font-weight: bold !important;
+// Prevent body scroll when in portal
+body.portal-active {
+    overflow: hidden;
 }
 
-.tactical-input {
-    background-color: #000 !important;
-    color: #4caf50 !important;
-    border: 1px solid #333 !important;
+.govuk-main-wrapper--auto-spacing {
+    max-width: none !important;
+    padding-top: 10px !important;
+    padding-bottom: 0 !important;
+}
+
+// OS / Military Map Filters
+.map-style-military {
+    filter: contrast(1.1) saturate(0.9) brightness(1.05);
+}
+
+.map-style-os {
+    filter: contrast(1.05) saturate(1.1);
+}
+
+// Grid Lines (Visual Overlay)
+.grid-line {
+    border: 0.5px solid rgba(0, 0, 255, 0.2);
+    pointer-events: none;
+}
+
+.grid-label {
+    font-family: "GDS Transport", arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(0, 0, 255, 0.6);
+}
+
+// Marker Styling (NATO APP-6)
+.tactical-marker {
+    transition: transform 0.1s ease-out;
+}
+
+.leaflet-tooltip-tactical {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #0b0c0c;
+    border-radius: 0;
+    font-family: "GDS Transport", arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0px #0b0c0c;
 }

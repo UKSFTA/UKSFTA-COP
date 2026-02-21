@@ -1,7 +1,18 @@
 {
+  "name": "uksfta-cop-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm run copy-assets",
+    "copy-assets": "cp -r node_modules/govuk-frontend/dist/govuk/assets/* static/assets/ && npm run copy-theatre",
+    "copy-theatre": "mkdir -p static/theatre && cp ../theatre_archive/all.js static/theatre/all.js && cp -r ../theatre_archive/* static/theatre/ 2>/dev/null || true",
+    "dev": "npm run copy-theatre && hugo server --bind 0.0.0.0 --baseURL http://127.0.0.1:1313/ --port 1313 --buildDrafts --disableFastRender",
+    "build": "npm run copy-assets && hugo --minify"
+  },
   "devDependencies": {
     "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1"
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.85.0"
   },
   "dependencies": {
     "govuk-frontend": "^6.0.0"

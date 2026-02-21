@@ -10,15 +10,16 @@ fi
 
 echo "🚀 MOD UPLINK: Starting Intelligence Portal..."
 cd web
-mkdir -p static/theatre static/assets/fonts
 
-# STAGE MOD FONTS
-if [ -d "node_modules/govuk-frontend/dist/govuk/assets/fonts" ]; then
-    cp -r node_modules/govuk-frontend/dist/govuk/assets/fonts/* static/assets/fonts/
+# Install dependencies if needed
+if [ ! -d "node_modules" ]; then
+    echo "📦 Installing Dependencies..."
+    npm install
 fi
 
 # PHYSICAL COPY of tiles and metadata
 if [ -f "$PROJECT_ROOT/theatre_archive/all.js" ]; then
+    mkdir -p static/theatre
     cp "$PROJECT_ROOT/theatre_archive/all.js" "static/theatre/all.js"
 fi
 
@@ -29,4 +30,5 @@ for d in "$PROJECT_ROOT/theatre_archive"/*; do
     fi
 done
 
-hugo server --bind 0.0.0.0 --baseURL http://127.0.0.1:1313/ --port 1313 --buildDrafts --disableFastRender
+# Use npm run dev which handles asset copying and Hugo server
+npm run dev

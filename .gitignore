@@ -1,4 +1,5 @@
-# UKSFTA Diamond Grade GitIgnore - COP Mod & Portal
+# UKSFTA Diamond Grade GitIgnore
+# Blocks all production artifacts and local environment files
 
 # HEMTT Artifacts
 .hemttout/
@@ -19,18 +20,10 @@
 *.log
 *.rpt
 *.bidry
-*.so
-*.dll
 
-# Web Infrastructure
-web/public/
-web/resources/_gen/
-.hugo_build.lock
-node_modules/
-
-# Intelligence Archive (Large Map Tiles)
-# theatre_archive/
-web/static/theatre/
+# Releases
+releases/
+all_releases/
 
 # Local Environment
 .env
@@ -47,3 +40,9 @@ __pycache__/
 # System
 .DS_Store
 Thumbs.db
+
+# DevOps Artifacts
+UNIT_HEALTH_REPORT.md
+health_history.json
+unit_assets.json
+ASSET_CATALOG.md
