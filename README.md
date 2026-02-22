@@ -52,3 +52,5 @@ This project adheres to **MoD Digital Service Standards**.
 ---
 **DISTRIBUTION:** UKSFTA-DEV-ONLY
 **GENERATED:** 2026-02-19
+
+**Operational Status**: 🛡️  Real-time Sync Active
