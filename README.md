@@ -2,23 +2,23 @@
 
 ## 1. Overview
 
-The UKSFTA COP is a high-fidelity situational awareness platform designed for the UKSF Taskforce Alpha. It provides a real-time tactical interface for mission planning, intelligence gathering, and unit coordination.
+The UKSFTA COP is a situational awareness platform designed for the UKSF Taskforce Alpha. It provides a tactical interface for mission planning, intelligence gathering, and unit coordination.
 
 ### 1.1 Core Capabilities
 
-- **Precision MGRS Tracking**: High-accuracy coordinate system synchronized with Arma 3.
-- **Real-Time Intelligence**: Bidirectional synchronization between the battlefield and the command portal.
+- **MGRS Tracking**: High-accuracy coordinate system synchronized with Arma 3.
+- **Intelligence Sync**: Bidirectional synchronization between the battlefield and the command portal.
 - **Multi-Theatre Support**: Specialized map layers for Dagger Island and Zagorsk operations.
-- **Tactical Symbology**: NATO-standard identifiers for all operational reporting.
+- **NATO Symbology**: NATO-standard identifiers for all operational reporting.
 
 ## 2. Technical Architecture
 
 The portal is built on a modern, high-performance stack:
 
 - **Frontend**: Hugo (Go-based static site generator) utilizing `govuk-frontend` patterns.
-- **Backend**: Supabase (PostgreSQL + Real-time engine) for sub-second data synchronization.
-- **Mapping**: Leaflet.js with a "God-Mode" raw pixel engine for zero-drift coordinate accuracy.
-- **Design**: 100% compliance with the UK Ministry of Defence "Government Style" standards.
+- **Backend**: Supabase (PostgreSQL + Real-time engine) for data synchronization.
+- **Mapping**: Leaflet.js with a raw pixel engine for accurate coordinate mapping.
+- **Design**: Built with GOV.UK Frontend patterns.
 
 ## 3. Development Environment
 
