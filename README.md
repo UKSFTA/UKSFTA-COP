@@ -1,34 +1,36 @@
 # UKSFTA Common Operational Picture (COP)
 
-## 1. Overview
+Situational awareness platform for UKSF Taskforce Alpha. Provides a
+tactical interface for mission planning, intelligence gathering, and
+unit coordination.
 
-The UKSFTA COP is a situational awareness platform designed for the UKSF Taskforce Alpha. It provides a tactical interface for mission planning, intelligence gathering, and unit coordination.
+## Core Capabilities
 
-### 1.1 Core Capabilities
+- **MGRS Tracking**: Coordinate system synchronised with Arma 3.
+- **Intelligence Sync**: Bidirectional synchronisation between the
+  battlefield and the command portal.
+- **Multi-Theatre Support**: Map layers for Dagger Island and Zagorsk
+  operations.
+- **NATO Symbology**: NATO-standard identifiers for operational reporting.
 
-- **MGRS Tracking**: High-accuracy coordinate system synchronized with Arma 3.
-- **Intelligence Sync**: Bidirectional synchronization between the battlefield and the command portal.
-- **Multi-Theatre Support**: Specialized map layers for Dagger Island and Zagorsk operations.
-- **NATO Symbology**: NATO-standard identifiers for all operational reporting.
+## Technical Architecture
 
-## 2. Technical Architecture
-
-The portal is built on a modern, high-performance stack:
-
-- **Frontend**: Hugo (Go-based static site generator) utilizing `govuk-frontend` patterns.
-- **Backend**: Supabase (PostgreSQL + Real-time engine) for data synchronization.
-- **Mapping**: Leaflet.js with a raw pixel engine for accurate coordinate mapping.
+- **Frontend**: Hugo (Go-based static site generator) using `govuk-frontend`
+  patterns.
+- **Backend**: Supabase (PostgreSQL + Real-time engine) for data
+  synchronisation.
+- **Mapping**: Leaflet.js with a pixel engine for coordinate mapping.
 - **Design**: Built with GOV.UK Frontend patterns.
 
-## 3. Development Environment
+## Development Environment
 
-### 3.1 Prerequisites
+### Prerequisites
 
 - Hugo (Extended Version) v0.155.3+
-- Node.js & NPM
-- Supabase Account & Credentials
+- Node.js and NPM
+- Supabase Account and Credentials
 
-### 3.2 Quick Start
+### Quick Start
 
 ```bash
 # Clone the repository
@@ -42,6 +44,13 @@ npm install
 ./run_dev.sh
 ```
 
-## 4. Operational Standards
+## Operational Standards
 
-All intelligence reports and tactical drawings must adhere to unit-standard callsign attribution and NATO symbology protocols. Forensic auditing is active on all bidirectional sync events.
+All intelligence reports and tactical drawings must adhere to unit-standard
+callsign attribution and NATO symbology protocols. Forensic auditing is
+active on all bidirectional sync events.
+
+## Licence
+
+This project is licensed under the Arma Public Licence (APL). See the
+`LICENSE` file.
