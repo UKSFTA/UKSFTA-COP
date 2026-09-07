@@ -1,0 +1,29 @@
+name = "UKSF Task Force Alpha - UKSFTA-COP"
+author = "UKSF Taskforce Alpha Team"
+prefix = "uksfta"
+mainprefix = "z"
+
+[version]
+path = "addons/cop/script_version.hpp"
+
+[files]
+include = [
+    "addons/*.pbo",
+    "addons/*.bisign",
+    "keys/*.bikey",
+    "uksfta_cop_ext_x64.so",
+    "uksfta_cop_ext_x64.dll",
+    "mod.cpp",
+    "meta.cpp",
+    "LICENSE",
+    "README.md"
+]
+
+[archive]
+directory = "releases"
+
+workshop_id = "0"
+workshop_tags = ["Mod", "Addon"]
+
+[hemtt.signing]
+authority = "UKSFTA"
